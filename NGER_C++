@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<int> nextGreatestElement(vector<int>& nums) {
+    int n = nums.size();
+    vector<int> result(n, -1);  
+    stack<int> st; 
+    for (int i = 0; i < n; i++) {
+        while (!st.empty() && nums[st.top()] < nums[i]) {  
+            result[st.top()] = nums[i];  
+            st.pop(); 
+        }
+        st.push(i); 
+    }
+    return result;
+}
+
+int main() {
+    vector<int> nums = {7, 17, 27, 77};
+    vector<int> result = nextGreatestElement(nums);
+    cout << "Original Array: ";
+    for (int num : nums) {
+        cout << num << " ";
+    }
+    cout << "\nNext Greatest Element to Right: ";
+    for (int num : result) {
+        cout << num << " ";
+    }
+    return 0;
+}
