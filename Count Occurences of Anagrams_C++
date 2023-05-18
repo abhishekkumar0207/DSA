@@ -1,0 +1,30 @@
+//User function template for C++
+class Solution{
+public:
+	int search(string pat, string txt) {
+	   int n = txt.size();
+	    int k = pat.size();
+	    int ans = 0;
+	    vector<int> arr1(26,0);
+	    vector<int> arr2(26,0);
+	    for(int i = 0; i<k; i++)
+	    {
+	        arr1[pat[i] - 'a']++;
+	    }
+	    for(int i = 0; i<k; i++)
+	    {
+	        arr2[txt[i] - 'a']++;
+	    }
+	    for(int i = k; i<n; i++)
+	    {
+	        if(arr2  ==  arr1) ans++;
+	        arr2[txt[i-k] - 'a']--;
+	        arr2[txt[i] - 'a']++;
+	    }
+	    if(arr2  ==  arr1) ans++;
+	    return ans;
+	    // code here
+	   
+	}
+
+};
